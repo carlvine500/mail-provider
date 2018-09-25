@@ -1,7 +1,7 @@
 mail-provider
 =============
 bugfix1: x509: certificate is valid for *.mxhichina.com, mxhichina.com, not xxx.com
-#配置示例:
+# 配置示例:
 ````
 {
     "debug": true,
