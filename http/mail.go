@@ -31,10 +31,15 @@ func configProcRoutes() {
 		//替换content中的 \r\n 为 <br/>
 		content = strings.Replace(content, "\r\n", "<br/>", -1)
 
+		tosArr := []string{}
+		for _, tosTmp := range strings.Split(tos, ";") {
+			tosArr = append(tosArr, strings.TrimSpace(tosTmp))
+		}
+
 		if cfg.Smtp.Type == "smtp_ssl" {
 			m := gomail.NewMessage()
 			m.SetHeader("From", cfg.Smtp.From)
-			m.SetHeader("To", tos)
+			m.SetHeader("To", tosArr...)
 			//m.SetAddressHeader("Cc", "dan@example.com", "Dan")
 			m.SetHeader("Subject", subject)
 			m.SetBody("text/html", content)
