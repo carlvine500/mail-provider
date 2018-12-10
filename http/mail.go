@@ -28,7 +28,7 @@ func configProcRoutes() {
 		subject := param.MustString(r, "subject")
 		content := param.MustString(r, "content")
 		bodyData, _ := ioutil.ReadAll(r.Body)
-		if bodyData != nil {
+		if content == "payload" {
 			content = string(bodyData[:])
 		}
 		tos = strings.Replace(tos, ",", ";", -1)
