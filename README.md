@@ -72,3 +72,8 @@ curl http://$ip:4000/sender/mail -d "tos=a@a.com,b@b.com&subject=xx&content=yy"
 ```
 
 2.对于126.163等邮箱请控制发信频率以免被封
+
+
+3.大html文本发送
+curl 'http://falcon.successchannel.tech:4000/sender/mail?&tos=lihong.tu@clickpaas.com&subject=x&content=payload' --header "Content-Type: text/plain" -d @b1.html
+content=payload,payload会使用附加的文本内容替换,@b1.html表示附件名称为b1.html

@@ -11,6 +11,7 @@ import (
 	"gopkg.in/gomail.v2"
 	"strconv"
 	"crypto/tls"
+	"io/ioutil"
 )
 
 func configProcRoutes() {
@@ -26,6 +27,10 @@ func configProcRoutes() {
 		tos := param.MustString(r, "tos")
 		subject := param.MustString(r, "subject")
 		content := param.MustString(r, "content")
+		bodyData, _ := ioutil.ReadAll(r.Body)
+		if bodyData != nil {
+			content = string(bodyData[:])
+		}
 		tos = strings.Replace(tos, ",", ";", -1)
 
 		//替换content中的 \r\n 为 <br/>
